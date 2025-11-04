@@ -1,7 +1,7 @@
-Bank of React — Assignment 3 (Debits Only Base)
+Bank of React — Assignment 3
 ===============================================
 
-This repository contains our implementation for Assignment 3 – Bank of React. The main branch currently ships the Debits feature only; the Credits feature will be merged via a separate PR.
+This repository contains our implementation for Assignment 3 – Bank of React.
 
 Live Link
 ---------
@@ -19,10 +19,7 @@ Quick Redeploy
   - `set NODE_OPTIONS=--openssl-legacy-provider`
   - `npm run deploy`
 
-Team
-----
-- Your Name (@your-github)
-- Teammate Name (@their-github)
+
 
 Tech Stack
 ----------
