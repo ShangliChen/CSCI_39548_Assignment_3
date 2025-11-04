@@ -2,14 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=/CSCI_39548_Assignment_3/" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Redirecting…</title>
-    <script>
-      // Fallback for environments that ignore meta refresh
-      window.location.replace('/CSCI_39548_Assignment_3/');
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages — path-preserving redirect
+      // https://github.com/rafgraph/spa-github-pages
+      (function() {
+        var l = window.location;
+        var segmentCount = 1; // repo-name depth: /CSCI_39548_Assignment_3
+        var base = l.pathname.split('/').slice(0, 1 + segmentCount).join('/');
+        var path = l.pathname.slice(1).split('/').slice(segmentCount).join('/');
+        var search = l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '';
+        l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+                  base + '/?/' + path + search + l.hash);
+      })();
     </script>
   </head>
-  <body>
-    Redirecting to the app…
-  </body>
-</html>
+  <body>Redirecting…</body>
+  </html>
