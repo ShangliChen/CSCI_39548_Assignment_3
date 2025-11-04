@@ -7,6 +7,18 @@ Live Link
 ---------
 - https://shanglichen.github.io/CSCI_39548_Assignment_3/
 
+Quick Redeploy
+---------------
+- macOS/Linux:
+  - `export NODE_OPTIONS=--openssl-legacy-provider`
+  - `npm run deploy`
+- Windows (PowerShell):
+  - `$env:NODE_OPTIONS="--openssl-legacy-provider"`
+  - `npm run deploy`
+- Windows (cmd):
+  - `set NODE_OPTIONS=--openssl-legacy-provider`
+  - `npm run deploy`
+
 Team
 ----
 - Your Name (@your-github)
@@ -43,7 +55,7 @@ Troubleshooting
 ---------------
 - OpenSSL error (ERR_OSSL_EVP_UNSUPPORTED): use the env var shown above or Node 16 LTS.
 - Blank page/404 on GitHub Pages: confirm `homepage` matches exactly (case‑sensitive, trailing slash), re‑deploy with the env var.
-- Refresh on non‑root route (e.g., /debits) returns 404: GitHub Pages is static hosting; we include a minimal SPA fallback (`public/404.html`) that redirects to the app root.
+- Refresh on non‑root route (e.g., /debits) returns 404: GitHub Pages is static hosting; a minimal SPA fallback is included (`public/404.html`) that redirects to the app root.
 
 Architecture & Data Flow
 ------------------------
@@ -90,4 +102,3 @@ React Router v5 compatibility
   - `npm install react-router-dom@5.3.0 react-router@5.2.1`
   - `npm install react-scripts@latest --legacy-peer-deps`
   - `npm start`
-
