@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+/* Simple, clean layout + theming */
+:root {
+  --bg: #f7fbff;
+  --panel: #ffffff;
+  --muted: #5f738a;
+  --text: #1a2a3a;
+  --accent: #3b82f6;
+  --accent-2: #16a34a;
+  --danger: #dc2626;
+  --border: #e5eefc;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; }
+
+.App { min-height: 100%; display: flex; flex-direction: column; }
+
+.navbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 16px; justify-content: space-between;
+  padding: 12px 20px; background: #ffffff; backdrop-filter: none;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(56, 97, 251, 0.06);
+}
+.nav-brand { font-weight: 700; letter-spacing: 0.5px; }
+.nav-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.nav-links a { color: var(--text); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: background 0.2s ease, color 0.2s ease; }
+.nav-links a:hover { background: #eef5ff; color: #0f3a8d; }
+.nav-balance { font-variant-numeric: tabular-nums; font-weight: 600; }
+.nav-balance.neg { color: var(--danger); }
+
+.container { width: 100%; max-width: 980px; margin: 24px auto; padding: 0 16px; flex: 1; }
+
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: 0 10px 24px rgba(59, 130, 246, 0.08);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.page h1 { margin: 0 0 8px; }
+.subtitle { color: var(--muted); margin: 6px 0 18px; }
+.hero { width: 100%; height: auto; border-radius: 10px; opacity: 0.9; }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+.quick-links { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0 20px; }
+.btn { display: inline-block; padding: 10px 16px; background: var(--accent); color: #ffffff; border: 1px solid #2f6fd6; border-radius: 8px; text-decoration: none; transition: transform 0.05s ease, filter 0.2s ease; }
+.btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
-.App-link {
-  color: #61dafb;
-}
+.home-balance { margin-top: 8px; font-size: 18px; font-weight: 600; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end; }
+.form div { display: flex; flex-direction: column; gap: 4px; }
+.form label { color: var(--muted); font-size: 12px; }
+.form input { padding: 10px 12px; background: #ffffff; color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.04); }
+.form button { padding: 10px 14px; border-radius: 8px; background: var(--accent); color: #fff; border: none; font-weight: 600; cursor: pointer; }
+.form button:hover { filter: brightness(1.05); }
+
+.list { display: flex; flex-direction: column; gap: 10px; max-height: 360px; overflow-y: auto; padding-right: 4px; }
+.list::-webkit-scrollbar { width: 10px; }
+.list::-webkit-scrollbar-track { background: #f0f6ff; border-radius: 8px; }
+.list::-webkit-scrollbar-thumb { background: #c9dcff; border-radius: 8px; border: 2px solid #f0f6ff; }
+.list::-webkit-scrollbar-thumb:hover { background: #b3ceff; }
+.list { scrollbar-width: thin; scrollbar-color: #c9dcff #f0f6ff; }
+.list-item { padding: 12px 14px; background: #ffffff; border: 1px solid var(--border); border-radius: 8px; }
+.item-main { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.item-desc { color: var(--text); }
+.item-amount { color: var(--accent-2); font-variant-numeric: tabular-nums; font-weight: 600; }
+.item-amount.debit { color: var(--danger); }
+.item-date { color: var(--muted); font-size: 12px; margin-top: 4px; }
