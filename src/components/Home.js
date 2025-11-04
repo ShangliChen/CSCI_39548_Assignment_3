@@ -10,20 +10,18 @@ import {Link} from 'react-router-dom';
 class Home extends Component {
   render() {
     return (
-      <div>
-        <img src="https://picsum.photos/200/200" alt="bank"/>
-
-        <h1>Bank of React</h1>
-
-        <Link to="/userProfile">User Profile</Link>
-        <br/>
-        <Link to="/login">Login</Link>
-        <br/>
-        <Link to="/credits">Credits (to be implemented in the Assignment)</Link>
-        <br/>
-        <Link to="/debits">Debits (to be implemented in the Assignment)</Link>
-        <br/><br/>
-        <AccountBalance accountBalance={this.props.accountBalance}/>
+      <div className="page card">
+        <img className="hero" src="https://picsum.photos/1200/260" alt="bank"/>
+        <h1 className="title">Welcome to Bank of React</h1>
+        <p className="subtitle">Simple demo of routing, forms, and state</p>
+        <div className="quick-links">
+          <Link className="btn" to="/debits">View Debits</Link>
+          <Link className="btn" to="/userProfile">User Profile</Link>
+          <Link className="btn" to="/login">Login</Link>
+        </div>
+        <div className="home-balance">
+          <AccountBalance accountBalance={this.props.accountBalance}/>
+        </div>
       </div>
     );
   }

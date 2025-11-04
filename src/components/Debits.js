@@ -1,36 +1,96 @@
-/*==================================================
-src/components/Debits.js
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import AccountBalance from './AccountBalance';
 
-The Debits component contains information for Debits page view.
-Note: You need to work on this file for the Assignment.
-==================================================*/
-import {Link} from 'react-router-dom';
-
-const Debits = (props) => {
-  // Create the list of Debit items
-  let debitsView = () => {
-    const { debits } = props;
-    return debits.map((debit) => {  // Extract "id", "amount", "description" and "date" properties of each debits JSON array element
-      let date = debit.date.slice(0,10);
-      return <li key={debit.id}>{debit.amount} {debit.description} {date}</li>
-    });
+class Debits extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      newDebit: {
+        description: '',
+        amount: '',
+        // Store date as yyyy-mm-dd for consistency with display
+        date: new Date().toISOString().slice(0, 10),
+      },
+    };
   }
-  // Render the list of Debit items and a form to input new Debit item
-  return (
-    <div>
-      <h1>Debits</h1>
 
-      {debitsView()}
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState((prevState) => ({
+      newDebit: {
+        ...prevState.newDebit,
+        [name]: value,
+      },
+    }));
+  };
 
-      <form onSubmit={props.addDebit}>
-        <input type="text" name="description" />
-        <input type="number" name="amount" />
-        <button type="submit">Add Debit</button>
-      </form>
-      <br/>
-      <Link to="/">Return to Home</Link>
-    </div>
-  );
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { amount } = this.state.newDebit;
+    const newDebit = {
+      ...this.state.newDebit,
+      amount: parseFloat(amount),
+    };
+    this.props.addDebit(newDebit);
+    this.setState({
+      newDebit: {
+        description: '',
+        amount: '',
+        date: new Date().toISOString().slice(0, 10),
+      },
+    });
+  };
+
+  render() {
+    const { debits, accountBalance } = this.props;
+    const { description, amount } = this.state.newDebit;
+
+    // Display newest first without mutating props
+    const ordered = [...debits].reverse();
+    return (
+      <div className="page card">
+        <h1>Debits</h1>
+        <AccountBalance accountBalance={accountBalance} />
+        <br />
+        <div className="list">
+          {ordered.map((debit, index) => (
+            <div className="list-item" key={index}>
+              <div className="item-main">
+                <span className="item-desc">{debit.description}</span>
+                <span className="item-amount debit">${Number(debit.amount).toFixed(2)}</span>
+              </div>
+              <div className="item-date">{String(debit.date).slice(0, 10)}</div>
+            </div>
+          ))}
+        </div>
+        <br />
+        <form className="form" onSubmit={this.handleSubmit}>
+          <div>
+            <label>Description</label>
+            <input
+              type="text"
+              name="description"
+              value={description}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label>Amount</label>
+            <input
+              type="number"
+              name="amount"
+              value={amount}
+              onChange={this.handleChange}
+            />
+          </div>
+          <button type="submit">Add Debit</button>
+        </form>
+        <br />
+        <Link to="/">Return to Home</Link>
+      </div>
+    );
+  }
 }
 
 export default Debits;

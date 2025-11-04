@@ -43,10 +43,10 @@ class LogIn extends Component {
 
     // Render the login form (and call "handleSubmit" method when "Log In" button is clicked to submit form)
     return (
-      <div>
+      <div className="page card">
         <h1>Login</h1>
         
-        <form onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleSubmit}>
           <div>
             <label>User Name</label>
             <input type="text" name="userName" defaultValue={this.props.user.userName} onChange={this.handleChange} />
