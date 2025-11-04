@@ -15,6 +15,7 @@ class Home extends Component {
         <h1 className="title">Welcome to Bank of React</h1>
         <p className="subtitle">Simple demo of routing, forms, and state</p>
         <div className="quick-links">
+          <Link className="btn" to="/credits">View Credits</Link>
           <Link className="btn" to="/debits">View Debits</Link>
           <Link className="btn" to="/userProfile">User Profile</Link>
           <Link className="btn" to="/login">Login</Link>
